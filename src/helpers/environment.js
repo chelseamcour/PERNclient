@@ -5,7 +5,7 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:3002/';
         break;
     case 'cmc-blue-lootlog-client':
-        APIURL = 'https://cmc-blue-lootlog-client.herokuapp.com/'
+        APIURL = 'https://cmc-blue-lootlog-server.herokuapp.com/'
 }
 
 export default APIURL;
