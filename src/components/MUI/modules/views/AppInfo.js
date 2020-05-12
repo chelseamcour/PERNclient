@@ -10,8 +10,6 @@ import Tshirt from '../../../../assets/tshirt.svg';
 import Snack from '../../../../assets/snack.svg';
 
 
-
-
 const styles = (theme) => ({
   root: {
     display: 'flex',
@@ -63,13 +61,15 @@ function AppInfo(props) {
   return (
     <section className={classes.root}>
       <Container className={classes.container}>
-        <img
+        {/* <img
           src="/static/themes/onepirate/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
-        />
-        <Typography variant="h4" marked="center" className={classes.title} component="h2">
-          How it works
+        /> */}
+        <Typography variant="h4" marked="center"  component="h2">
+        Track & Rate Your Race Swag!
+        </Typography>
+        <Typography variant="h5" align="center">
         </Typography>
         <div>
           <Grid container spacing={5}>

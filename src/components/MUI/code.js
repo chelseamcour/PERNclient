@@ -24,19 +24,13 @@ import PropTypes from 'prop-types';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-// import Button from './modules/components/Button';
 import Medal from '../../assets/medal.svg';
 import Tshirt from '../../assets/tshirt.svg';
 import Snack from '../../assets/snack.svg';
-import Photo from '../../assets/photo.svg';
-import LoggedInNav from './modules/views/LoggedInNav';
-// import Snackbar from './modules/views/Snackbar';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+
+
 
 const labels = {
-    0: 'N/A',
     1: 'Terrible',
     2: 'Mediocre',
     3: 'Average',
@@ -64,98 +58,63 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 },
-image: {
-  height: 55,
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(2),
-},
 }))
 
 const LootCreate = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
-  // const [valueTwo, setValueTwo] = React.useState(2);
+  const [valueTwo, setValueTwo] = React.useState(2);
   const [hoverMedal, setHoverMedal] = React.useState(-1);
   const [hoverTshirt, setHoverTshirt] = React.useState(-1);
   const [hoverSnacks, setHoverSnacks] = React.useState(-1);
-  const [raceName, setRaceName] = useState('');
-  const [raceDate, setRaceDate] = useState('');
-  const [raceCity, setRaceCity] = useState('');
-  const [raceState, setRaceState] = useState('');
-  const [raceCountry, setRaceCountry] = useState('');
-  const [raceDistance, setRaceDistance] = useState('');
   const [medal, setMedal] = useState('');
   const [medalRating, setMedalRating] = useState('');
+  const [medalComments, setMedalComments] = useState('');
   const [tshirt, setTshirt] = useState('');
   const [tshirtRating, setTshirtRating] = useState('');
+  const [tshirtComments, setTshirtComments] = useState('');
   const [snacks, setSnacks] = useState('');
   const [snacksRating, setSnacksRating] = useState('');
+  const [snacksComments, setSnacksComments] = useState('');
   const [photos, setPhotos] = useState('');
-  const [open, setOpen] = React.useState(false);
-  const [sessionToken, setSessionToken] = useState('');
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const clearToken = () => {
-    localStorage.clear();
-    setSessionToken('');
-}
+  const [comments, setComments] = useState('');
+  const [raceId, setRaceId] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:3002/log/addlog', {
         method: 'POST',
         body: JSON.stringify({
-          raceName: raceName,
-          raceDate: raceDate,
-          raceCity: raceCity,
-          raceState: raceState,
-          raceCountry: raceCountry,
-          raceDistance: raceDistance,
-          medal: medal,
-          medalRating: medalRating,
-          tshirt: tshirt,
-          tshirtRating: tshirtRating,
-          snacks: snacks,
-          snacksRating: snacksRating,
-          photos: photos}),
+            medal: medal, medalRating: medalRating,
+            tshirt: tshirt, tshirtRating: tshirtRating,
+            snacks: snacks, snacksRating: snacksRating,
+            photos: photos}),
         headers: new Headers ({
-          'Content-Type': 'application/json',
-          'Authorization': props.token
+            'Content-Type': 'application/json',
+            'Authorization': props.token
         })
     }).then((res) => res.json())
     .then((logData) => {
         console.log(logData);
-        setRaceName('');
-        setRaceDate('');
-        setRaceCity('');
-        setRaceState('');
-        setRaceCountry('');
-        setRaceDistance('');
         setMedal('');
         setMedalRating('');
+        setMedalComments('');
         setTshirt('');
         setTshirtRating('');
+        setTshirtComments('');
         setSnacks('');
         setSnacksRating('');
+        setSnacksComments('');
         setPhotos('');
+        setComments('');
+        setRaceId('');
         // props.fetchLogs();
     })
 }
 
   return (
     <React.Fragment>
-      <LoggedInNav clearToken={clearToken}/>
+      <AppNavBar />
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -166,105 +125,17 @@ const LootCreate = (props) => {
         <form
         onSubmit={handleSubmit}
         >
-        <TextField 
-        label="Race Name"
-        defaultValue="raceName"
-        onChange={(e) => setRaceName(e.target.value)}
-        value={raceName}
-        fullWidth
-        name="race name"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        >
-        </TextField>
         <Grid container spacing={2}>
-        <Grid item xs>
-        <TextField 
-        label="Date"
-        defaultValue="raceDate"
-        onChange={(e) => setRaceDate(e.target.value)}
-        value={raceDate}
-        fullWidth
-        name="race date"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        helperText="YYYY-MM-DD"
-        >
-        </TextField>
-        </Grid>
-        <Grid item xs>
-        <TextField 
-        label="Distance"
-        defaultValue="raceDistance"
-        onChange={(e) => setRaceDistance(e.target.value)}
-        value={raceDistance}
-        fullWidth
-        name="race distance"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        >
-        </TextField>
-        </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-        <Grid item xs>
-        <TextField 
-        label="City"
-        defaultValue="raceCity"
-        onChange={(e) => setRaceCity(e.target.value)}
-        value={raceCity}
-        fullWidth
-        name="race city"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        >
-        </TextField>
-        </Grid>
-        <Grid item xs>
-        <TextField 
-        label="State"
-        defaultValue="raceState"
-        onChange={(e) => setRaceState(e.target.value)}
-        value={raceState}
-        fullWidth
-        name="race state"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        >
-        </TextField>
-        </Grid>
-        <Grid item xs>
-        <TextField 
-        label="Country"
-        defaultValue="raceCountry"
-        onChange={(e) => setRaceCountry(e.target.value)}
-        value={raceCountry}
-        fullWidth
-        name="race country"
-        margin="normal"
-        variant="outlined"
-        rowsMax={2}
-        >
-        </TextField>
-        </Grid>
-        </Grid>
-        
-        <Grid container direction="row" alignItems="center" spacing={14}>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6}>
         <img
                   src={Medal}
                   alt="medal"
                   className={classes.image}
-                  
                 />
       </Grid>
-       <Grid item xs>
+       <Grid item xs={12} sm={6}>
        <Typography>Medal</Typography>
+        
        <FormControl component="fieldset">
         {/* <FormLabel component="legend">Medal</FormLabel> */}
         <RadioGroup
@@ -278,11 +149,8 @@ const LootCreate = (props) => {
           <FormControlLabel value="false" control={<Radio />} label="No" />
         </RadioGroup>
       </FormControl>
-      </Grid>
-      <Grid item xs>
       <div className={classes.root}>
         <Typography>Rating</Typography>
-        {/* <FormLabel component="legend">Rating</FormLabel> */}
         <Rating
           label="rating"
           labelPlacement="top"
@@ -296,22 +164,25 @@ const LootCreate = (props) => {
         />
         {value !== null && <Box ml={2}>{labels[hoverMedal !== -1 ? hoverMedal : value]}</Box>}
       </div>
+      <TextField 
+        label="Comments"
+        defaultValue="medalComments"
+        onChange={(e) => setMedalComments(e.target.value)}
+        value={medalComments}
+        fullWidth
+        name="medal comments"
+        margin="normal"
+        multiline
+        variant="outlined"
+        rowsMax={4}
+      >
+      </TextField>
       </Grid>
       </Grid>
+     
 
-      <Grid container direction="row" alignItems="center" spacing={14}>
-        <Grid item xs={3}>
-        <img
-                  src={Tshirt}
-                  alt="tshirt"
-                  className={classes.image}
-                  
-                />
-      </Grid>
-      <Grid item xs>
-     <Typography>Tshirt</Typography>
       <FormControl component="fieldset">
-        {/* <FormLabel component="legend">Tshirt</FormLabel> */}
+        <FormLabel component="legend">Tshirt</FormLabel>
         <RadioGroup
           row
           label="Tshirt"
@@ -323,10 +194,7 @@ const LootCreate = (props) => {
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
       </FormControl>
-      </Grid>
-      <Grid item xs>
       <div className={classes.root}>
-      <Typography>Rating</Typography>
         <Rating
           name="tshirt rating"
           value={tshirtRating}
@@ -338,22 +206,22 @@ const LootCreate = (props) => {
         />
         {value !== null && <Box ml={2}>{labels[hoverTshirt !== -1 ? hoverTshirt : value]}</Box>}
       </div>
-      </Grid>
-      </Grid>
+      <TextField 
+        label="Tshirt Comments"
+        defaultValue="tshirtComments"
+        onChange={(e) => setTshirtComments(e.target.value)}
+        value={tshirtComments}
+        fullWidth
+        name="tshirt comments"
+        margin="normal"
+        multiline
+        variant="outlined"
+        rowsMax={4}
+      >
+      </TextField>
 
-      <Grid container direction="row" alignItems="center" spacing={14}>
-        <Grid item xs={3}>
-        <img
-                  src={Snack}
-                  alt="snack"
-                  className={classes.image}
-                  
-                />
-      </Grid>
-      <Grid item xs>
-      <Typography>Snacks</Typography>
        <FormControl component="fieldset">
-         {/* <FormLabel component="legend">Snacks</FormLabel> */}
+         <FormLabel component="legend">Snacks</FormLabel>
          <RadioGroup
           row
           label="Snacks"
@@ -365,12 +233,10 @@ const LootCreate = (props) => {
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
       </FormControl>
-      </Grid>
-      <Grid item xs>
       <div className={classes.root}>
-      <Typography>Rating</Typography>
         <Rating
           name="snacks rating"
+          value={snacksRating}
           precision={1}
           onChange={(e) => setSnacksRating(e.target.value)}
           onChangeActive={(event, newHoverSnacks) => {
@@ -379,65 +245,66 @@ const LootCreate = (props) => {
         />
         {value !== null && <Box ml={2}>{labels[hoverSnacks !== -1 ? hoverSnacks : value]}</Box>}
       </div>
-      </Grid>
-      </Grid>
-
-      <Grid container direction="row" alignItems="center" spacing={14}>
-        <Grid item xs={3}>
-      <img
-                  src={Photo}
-                  alt="photo"
-                  className={classes.image}
-                  
-                />
-                </Grid>
-      <Grid item xs>
        <TextField 
-        label="Photo URL"
+        label="Snacks Comments"
+        defaultValue="snacksComments"
+        onChange={(e) => setSnacksComments(e.target.value)}
+        value={snacksComments}
+        fullWidth
+        name="snacks comments"
+        margin="normal"
+        multiline
+        variant="outlined"
+        rowsMax={4}
+       >
+       </TextField>
+       <TextField 
+        label="Photos"
         defaultValue="photos"
         onChange={(e) => setPhotos(e.target.value)}
         value={photos}
         fullWidth
         name="photos"
         margin="normal"
+        multiline
         variant="outlined"
         rowsMax={2}
-        helperText="example.com"
-        // type="url"
        >
        </TextField>
-       </Grid>
-      </Grid>
-      
+       <TextField 
+        label="Comments"
+        defaultValue="comments"
+        onChange={(e) => setComments(e.target.value)}
+        value={comments}
+        fullWidth
+        name="comments"
+        margin="normal"
+        multiline
+        variant="outlined"
+        rowsMax={4}
+       >
+       </TextField>
+
+       <TextField 
+        label="Race ID"
+        defaultValue="raceID"
+        onChange={(e) => setRaceId(e.target.value)}
+        value={raceId}
+        fullWidth
+        name="race id"
+        margin="normal"
+       >
+       </TextField>
     <Button
     type="submit"
     color="secondary"
     fullWidth
-    onClick={handleClick}
     >
     Submit
     </Button>
-    <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        open={open}
-        autoHideDuration={4000}
-        onClose={handleClose}
-        color="#278FF0"
-        message="Loot successfully added!"
-        action={
-          <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
     </form>
   </AppForm>
-  {/* <AppFooter /> */}
+  <AppFooter />
   </React.Fragment>
 )}
 

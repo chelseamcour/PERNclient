@@ -8,8 +8,8 @@ const rawTheme = createMuiTheme({
     },
     secondary: {
       light: '#7ED0F0', //light blue
-      main: '#3860ae', //main blue 
-      dark: '#182340', //dark blue
+      main: '#278FF0', //main blue 3860ae
+      dark: '#278FF0', //dark blue
     },
     warning: {
       main: '#c38734',

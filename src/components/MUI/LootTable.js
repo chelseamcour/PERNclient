@@ -1,130 +1,123 @@
-// import React from 'react';
-// import {Button} from 'reactstrap';
-// import MaterialTable from 'material-table';
-// import { makeStyles } from '@material-ui/core/styles';
+import withRoot from './modules/withRoot';
+import React, {useState, useEffect} from 'react';
+import {Table, Button} from 'reactstrap';
+import MaterialTable from 'material-table';
+import { makeStyles } from '@material-ui/core/styles';
 // import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Typography from './modules/components/Typography';
+import AppFooter from './modules/views/AppFooter';
+import AppNavBar from './modules/views/AppNavBar';
+import AppForm from './modules/views/AppForm';
 
 // const useStyles = makeStyles({
 //     table: {
 //       minWidth: 650,
+//     //   maxWidth: 700,
+    
 //     },
 //   });
-  
-//   function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-//   }
-  
-//   const rows = [
-//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//     createData('Eclair', 262, 16.0, 24, 6.0),
-//     createData('Cupcake', 305, 3.7, 67, 4.3),
-//     createData('Gingerbread', 356, 16.0, 49, 3.9),
-//   ];
 
+const LootTable = (props) => {
+    
+    const deleteLog = (log) => { 
+        fetch(`http://localhost:3002/log/${log.id}`, { 
+            method: 'DELETE',
+            headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': props.token 
+            })
+        })
+        .then(() => props.fetchLogs()) 
+    }
+    console.log(props)
 
-// const LootTable = (props) => {
+    const logMapper = () => {
+        return props.logs.map((log, index) => { 
+            return(
+                <tr key={index}>
+                    <th scope="row">{log.id}</th>
+                    <td>{log.raceName}</td>
+                    <td>{log.raceDate}</td>
+                    <td>{log.raceCity}</td>
+                    <td>{log.raceState}</td>
+                    <td>{log.raceCountry}</td>
+                    <td>{log.raceDistance}</td>
+                    <td>{log.medal}</td>
+                    <td>{log.medalRating}</td>
+                    <td>{log.tshirt}</td>
+                    <td>{log.tshirtRating}</td>
+                    <td>{log.snacks}</td>
+                    <td>{log.snacksRating}</td>
+                    <td>{log.photos}</td>
+                    <td>
+                        <Button color="warning" onClick={() => {props.editUpdateLog(log); props.updateOn()}}>Update</Button> 
+                        <Button color="danger" onClick={() => {deleteLog(log)}}>Delete</Button>
+                    </td>
+                </tr>
+            )
+        })
+    }
+    // const classes = useStyles();
 
-//     const deleteLog = (log) => { 
-//         fetch('http://localhost:30002/log/${loot.id}', { 
-//             method: 'DELETE',
-//             headers: new Headers({
-//             'Content-Type': 'application/json',
-//             'Authorization': props.token 
-//             })
-//         })
-//         .then(() => props.fetchLogs()) 
-//     }
+    return(
+        <>
+        <h3>Log History</h3>
+        <hr/>
+        <Table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Race Name</th>
+                    <th>Date</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Distance</th>
+                    <th>Medal</th>
+                    <th>Medal Rating</th>
+                    <th>Tshirt</th>
+                    <th>Tshirt Rating</th>
+                    <th>Snacks</th>
+                    <th>Snacks Rating</th>
+                    <th>Photos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {logMapper()}
+            </tbody>
+        </Table>
+        </>
+    // <TableContainer>
+    //     <Table>
+    //         <TableHead>
+    //             <TableRow>
+    //                 <TableCell>#</TableCell>
+    //                 <TableCell>Race Name</TableCell>
+    //                 <TableCell>Date</TableCell>
+    //                 <TableCell>City</TableCell>
+    //                 <TableCell>State</TableCell>
+    //                 <TableCell>Country</TableCell>
+    //                 <TableCell>Distance</TableCell>
+    //                 <TableCell>Medal</TableCell>
+    //                 <TableCell>Medal Rating</TableCell>
+    //                 <TableCell>Tshirt</TableCell>
+    //                 <TableCell>Tshirt Rating</TableCell>
+    //                 <TableCell>Snacks</TableCell>
+    //                 <TableCell>Snacks Rating</TableCell>
+    //                 <TableCell>Photos</TableCell>
+    //             </TableRow>
+    //         </TableHead>
+    //         <TableBody>
+    //         </TableBody>
+    //     </Table>
+    //     </TableContainer>
+    );
+};
 
-//     const logMapper = () => {
-//         return props.logs.map((log, index) => { 
-//             return( 
-//                 <tr key={index}>
-//                     <th scope="row">{log.id}</th>
-//                     <td>{log.medal}</td>
-//                     <td>{log.medalRating} stars</td>
-//                     <td>{log.medalComments}</td>
-//                     <td>{log.tshirt}</td>
-//                     <td>{log.tshirtRating}</td>
-//                     <td>{log.tshirtComments}</td>
-//                     <td>{log.snacks}</td>
-//                     <td>{log.snacksRating}</td>
-//                     <td>{log.snacksComments}</td>
-//                     <td>{log.photos}</td>
-//                     <td>{log.comments}</td>
-//                     <td>
-//                         <Button color="warning" onClick={() => {props.editUpdateLog(log); props.updateOn()}}>Update</Button> {/*4 - We include two buttons that are non-functional right now. */}
-//                         <Button color="danger" onClick={() => {deleteLog(log)}}>Delete</Button>
-//                     </td>
-//                 </tr>
-//             )
-//         })
-//     }
-//     const classes = useStyles();
-
-//     return(
-//         <AppNavBar />
-//       <AppForm></AppForm>
-//         <TableContainer component={Paper}>
-//       <Table className={classes.table} aria-label="simple table">
-//         <TableHead>
-//           <TableRow>
-//             <TableCell>Dessert (100g serving)</TableCell>
-//             <TableCell align="right">Calories</TableCell>
-//             <TableCell align="right">Fat&nbsp;(g)</TableCell>
-//             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-//             <TableCell align="right">Protein&nbsp;(g)</TableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {rows.map((row) => (
-//             <TableRow key={row.name}>
-//               <TableCell component="th" scope="row">
-//                 {row.name}
-//               </TableCell>
-//               <TableCell align="right">{row.calories}</TableCell>
-//               <TableCell align="right">{row.fat}</TableCell>
-//               <TableCell align="right">{row.carbs}</TableCell>
-//               <TableCell align="right">{row.protein}</TableCell>
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </TableContainer>
-       
-//     );
-// };
-
-// export default LootTable;
-
-
-//  // <>
-//         // <h3>Loot History</h3>
-//         // <hr/>
-//         // <Table striped>
-//         //     <thead>
-//         //         <tr>
-//         //             <th>#</th>
-//         //             <th>Medal</th>
-//         //             <th>Medal Rating</th>
-//         //             <th>Medal Comments</th>
-//         //             <th>Tshirt</th>
-//         //             <th>Tshirt Rating</th>
-//         //             <th>Tshirt Comments</th>
-//         //             <th>Snacks</th>
-//         //             <th>Snacks Rating</th>
-//         //             <th>Snacks Comments</th>
-//         //             <th>Photos</th>
-//         //             <th>Comments</th>
-//         //         </tr>
-//         //     </thead>
-//         //     <tbody>
-//         //     </tbody>
-//         // </Table>
-//         // </>
+export default withRoot(LootTable);

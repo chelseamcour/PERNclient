@@ -9,19 +9,15 @@ import LogIn from '../MUI/LogIn';
 
 const Auth = (props) => { 
     return(
+        <>
         <Container className="auth-container">
-            <SignUp updateToken={props.updateToken}/>
+            {/* <SignUp updateToken={props.updateToken}/> */}
             <LogIn updateToken={props.updateToken}/>
-
-
-            <Row>
-                <Col md="6" className="login-col">
-                </Col>
-                <Col md="6">
-                    {/* <Login updateToken={props.updateToken}/> */}
-                </Col>
-            </Row>
-        </Container>
+            </Container>
+        {/* <Container className="auth-container-two">
+            <SignUp updateToken={props.updateToken}/>
+            </Container> */}
+</>
     );
 };
 

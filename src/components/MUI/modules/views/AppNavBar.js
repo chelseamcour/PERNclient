@@ -69,7 +69,7 @@ function AppNavBar(props) {
               variant="h6"
               underline="none"
               style={{ textDecoration: 'none' }}
-              className={clsx(classes.rightLink, classes.linkSecondary)}
+              className={clsx(classes.rightLink)}
               href="http://localhost:3003/user/signup"
             >
               {'Sign Up'}
@@ -83,7 +83,7 @@ function AppNavBar(props) {
             >
               {'Log Out'}
             </Link> */}
-            <Button onClick={props.clearToken}>Log Out</Button>
+            {/* <Button onClick={props.clearToken}>Log Out</Button> */}
           </div>
         </Toolbar>
       </NavBar>

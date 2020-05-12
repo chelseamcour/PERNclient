@@ -5,6 +5,11 @@ import Button from '../components/Button';
 import Typography from '../components/Typography';
 import HomePageLayout from './HomePageLayout';
 import homepage from '../../../../assets/homepage.png';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Medal from '../../../../assets/medal.svg';
+import Tshirt from '../../../../assets/tshirt.svg';
+import Snack from '../../../../assets/snack.svg';
 
 const backgroundImage = homepage;
 
@@ -36,12 +41,12 @@ function HomePage(props) {
     <HomePageLayout backgroundClassName={classes.background}>
       {/* Increase the network loading priority of the background image. */}
       <img style={{ display: 'none' }} src={backgroundImage} alt="increase priority" />
-      <Typography color="inherit" align="center" variant="h3" marked="center">
+      <Typography color="#DDDDE0" align="center" variant="h3" marked="center">
         You've Logged Your Time...Now Log Your Loot
       </Typography>
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
-        Keep track of all your race swag - medals, tshirts, snacks, and more!
-      </Typography>
+        Keep track of all your race swag in one place!
+      </Typography>        
       <Button
         color="secondary"
         variant="contained"

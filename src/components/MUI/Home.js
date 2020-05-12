@@ -13,8 +13,8 @@ function Index(props) {
       <AppNavBar clearToken={props.clearToken}/>
       <HomePage />
       <AppInfo />
-      <Contact />
-      <AppFooter />
+      {/* <Contact /> */}
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }

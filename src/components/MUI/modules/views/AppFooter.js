@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.light,
   },
   container: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     display: 'flex',
   },
   iconsWrapper: {
@@ -81,7 +81,7 @@ export default function AppFooter() {
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="caption">
+            {/* <Typography variant="caption">
               {'Icons made by '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik
@@ -99,7 +99,7 @@ export default function AppFooter() {
               >
                 CC 3.0 BY
               </Link>
-            </Typography>
+            </Typography> */}
           </Grid>
         </Grid>
       </Container>

@@ -11,7 +11,7 @@ import AppFooter from './modules/views/AppFooter';
 import AppNavBar from './modules/views/AppNavBar';
 import AppForm from './modules/views/AppForm';
 // import { email, required } from './modules/forms/validation';
-import RFTextField from './modules/forms/RFTextField';
+// import RFTextField from './modules/forms/RFTextField';
 import FormButton from './modules/forms/FormButton';
 import FormFeedback from './modules/forms/FormFeedback';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -85,6 +85,9 @@ const SignUp = (props) => {
         value={firstName}
         fullWidth
         required
+        margin="normal"
+        variant="outlined"
+        rowsMax={2}
        >
        </TextField>
        </Grid>
@@ -96,6 +99,9 @@ const SignUp = (props) => {
         value={lastName}
         fullWidth
         required
+        margin="normal"
+        variant="outlined"
+        rowsMax={2}
        >
        </TextField>
        </Grid>
@@ -109,6 +115,8 @@ const SignUp = (props) => {
         required
         name="email"
         margin="normal"
+        variant="outlined"
+        rowsMax={2}
        >
        </TextField>
        <TextField 
@@ -122,18 +130,22 @@ const SignUp = (props) => {
         name="password"
         autoComplete="current-password"
         margin="normal"
+        variant="outlined"
+        rowsMax={2}
+        inputProps={{ minLength: 5 }}
        >
        </TextField>
        <Button
        type="submit"
        color="secondary"
        fullWidth
+      //  href="http://localhost:3003/addlog"
        >
          Sign Up
        </Button>
       </form>
       </AppForm>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   )}
 

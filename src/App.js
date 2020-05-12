@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import NavBar from './components/Home/Navbar';
 import Auth from './components/Auth/Auth';
 import LootIndex from './components/MUI/LootIndex';
@@ -11,6 +11,9 @@ import AppNavBar from './components/MUI/modules/views/AppNavBar';
 import Sitebar from './components/MUI/Sitebar';
 import LootTable from './components/MUI/LootTable';
 import LootEdit from './components/MUI/LootEdit';
+import LootCards from './components/MUI/LootCards';
+import Code from './components/MUI/code';
+import LoggedInNav from './components/MUI/modules/views/LoggedInNav';
 
 
 
@@ -18,7 +21,7 @@ function App() {
   const [sessionToken, setSessionToken] = useState('');
 
   useEffect(() => {
-    if (localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       setSessionToken(localStorage.getItem('token'));
     }
   }, [])
@@ -35,33 +38,31 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ? <LootCreate token={sessionToken}/>
-    : <Auth updateToken={updateToken}/>)
+    return (sessionToken === localStorage.getItem('token') ? <LootCreate token={sessionToken} />
+      : <Auth updateToken={updateToken} />)
   }
 
   return (
     <BrowserRouter>
-    <div className="App">
-      {/* <Navigation /> */}
-      <Switch>
-      <Route path="/" exact> <Home clearToken={clearToken}/> </Route>
-      <Route path="/index" exact> <LootIndex /> </Route>
-      <Route path="/edit" exact> <LootEdit /> </Route>
-      <Route path="/all" exact> <LootTable /> </Route>
-
-      <Route path="/logout" exact> <Sitebar /> </Route>
-      {/* <Sitebar clearToken={clearToken} /> */}
-      {/* <AppNavBar clickLogout={clearToken} /> */}
-      <Route path="user/login"> <LogIn updateToken={updateToken}/> </Route>
-      <Route path="/user/signup"> <SignUp updateToken={updateToken}/> </Route>
-      <Route path="/logloot"> <LootCreate token={sessionToken}/> </Route>
-      {/* <Route path="/signup2" component={Signup} /> */}
-      {/* <NavBar clearToken={clearToken}/> */}
-      {protectedViews()}
-      </Switch>
+      <div className="App">
+        {/* <Navigation /> */}
+        <Switch>
+          <Route path="/" exact> <Home clearToken={clearToken} /> </Route>
+          <Route path="/myloot" exact> <LootIndex token={sessionToken} /> </Route>
+          <Route path="/edit" exact> <LootEdit token={sessionToken} /> </Route>
+          {/* <Route path="/logout" exact> <Sitebar /> </Route> */}
+          {/* <Sitebar clearToken={clearToken} /> */}
+          {/* <AppNavBar clickLogout={clearToken} /> */}
+          <Route path="user/login"> <LogIn updateToken={updateToken} /> </Route>
+          <Route path="/user/signup"> <SignUp updateToken={updateToken} /> </Route>
+          {/* <Route> <LoggedInNav clearToken={clearToken}/> </Route> */}
+          <Route path="/logloot"> <LootCreate token={sessionToken} /> </Route>
+          {/* <NavBar clearToken={clearToken}/> */}
+          {protectedViews()}
+        </Switch>
       </div>
-      </BrowserRouter>
-    
+    </BrowserRouter>
+
   );
 }
 

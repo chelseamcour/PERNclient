@@ -1,25 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
+import withRoot from './modules/withRoot';
 import {Container, Row, Col} from 'reactstrap';
 import LootCreate from './LootCreate';
 import LootTable from './LootTable';
 import LootEdit from './LootEdit';
+import LootCards from './LootCards';
+import Search from './Search';
+import LoggedInNav from './modules/views/LoggedInNav';
+
+
 
 const LootIndex = (props) => {
     const [logs, setLogs] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
-    const [logToUpdate, setLogToUpdate] = useState({});
+    const [logToUpdate, setLogToUpdate] = useState([]);
+    const [sessionToken, setSessionToken] = useState('');
+    // const [state, dispatch] = useState([]);
 
     const fetchLogs = () => {
-        fetch('http://localhost:3002/loot/showall', {
+        fetch('http://localhost:3002/log/showall', {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',
-                'Authorication': props.token
+                'Authorization': props.token
             })
-        }).then((res) => res.json())
+        }).then( (res) => res.json())
         .then((logData) => {
-            setLogs(logData)
-            console.log(logData)
+            console.log(logData.logName)
+            setLogs(logData.logName)
         })
     }
 
@@ -28,8 +36,8 @@ const LootIndex = (props) => {
     }, [])
 
     const editUpdateLog = (log) => {
-        setLogToUpdate(log);
         console.log(log);
+        setLogToUpdate(log);
     }
 
     const updateOn = () => {
@@ -40,21 +48,31 @@ const LootIndex = (props) => {
         setUpdateActive(false);
     }
 
+    
+    const clearToken = () => {
+        localStorage.clear();
+        setSessionToken('');
+    }
+
+    // const search = searchValue => {
+    //     dispatch({
+    //       type: "SEARCH_MOVIES_REQUEST"
+    //     });
+    // }
+
     return(
         <Container>
-            <Row>
-                <Col md="3">
-                    {/* <LootCreate fetchLogs={fetchLogs} token={props.token}/> */}
-                </Col>
-                <Col md="9">
-                    <LootTable logs={logs} editUpdateLog={editUpdateLog}
-                    updateOn={updateOn} fetchLogs={fetchLogs} token={props.token}/>
-                </Col>
-                {updateActive ? <LootEdit logToUpdate={logToUpdate}
-                updateOff={updateOff} token={props.token} fetchLogs={fetchLogs}/> : <></>}
-            </Row>
-        </Container>                
+            <LoggedInNav clearToken={clearToken}/>
+        <Row>
+            <Col>
+                <LootCards logs={logs} editUpdateLog={editUpdateLog}
+                updateOn={updateOn} fetchLogs={fetchLogs} token={props.token}/>
+            </Col>
+            {updateActive ? <LootEdit logToUpdate={logToUpdate}
+            updateOff={updateOff} token={props.token} fetchLogs={fetchLogs}/> : <></>}
+        </Row>
+    </Container>              
     )
 }
 
-export default LootIndex;
+export default withRoot(LootIndex);

@@ -100,6 +100,8 @@ const LogIn = (props) => {
         required
         name="email"
         margin="normal"
+        variant="outlined"
+        rowsMax={2}
        >
        </TextField>
        <TextField 
@@ -113,6 +115,8 @@ const LogIn = (props) => {
         name="password"
         autoComplete="current-password"
         margin="normal"
+        variant="outlined"
+        rowsMax={2}
        >
        </TextField>
        <Button
@@ -120,12 +124,12 @@ const LogIn = (props) => {
        color="secondary"
        fullWidth
        >
-         Sign Up
+         Log In
        </Button>
       </form>
       </AppForm>
-      <Sitebar />
-      <AppFooter />
+      {/* <Sitebar /> */}
+      {/* <AppFooter /> */}
     </React.Fragment>
   )}
 
