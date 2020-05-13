@@ -94,7 +94,7 @@ const handleExpandClick = () => {
   };
 
   const deleteLog = (log) => { 
-    fetch(`http://localhost:3002/log/${log.id}`, { 
+    fetch(`${APIURL}/log/${log.id}`, { 
         method: 'DELETE',
         headers: new Headers({
         'Content-Type': 'application/json',

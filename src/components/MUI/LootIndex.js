@@ -19,7 +19,7 @@ const LootIndex = (props) => {
     // const [state, dispatch] = useState([]);
 
     const fetchLogs = () => {
-        fetch('http://localhost:3002/log/showall', {
+        fetch(`${APIURL}/log/showall`, {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',

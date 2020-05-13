@@ -44,7 +44,7 @@ const SignUp = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3002/user/signup", { //where `${APIURL}user/signup` goes
+    fetch(`${APIURL}/user/signup`, { //where `${APIURL}user/signup` goes
         method: 'POST',
         body: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
         headers: new Headers ({
