@@ -37,8 +37,7 @@ import Radio from '@material-ui/core/Radio';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import { white } from '@material-ui/core/colors';
-
-
+import APIURL from '../../helpers/environment';
 
 
 const styles = (theme) => ({
@@ -115,8 +114,7 @@ const LoggedInNav = (props) => {
             color="inherit"
             underline="none"
             style={{ textDecoration: 'none' }}
-            href="http://localhost:3003/logloot"
-            >
+            href={`${APIURL}/logloot`}            >
             Log Loot
             </Link>
         </MenuItem>
@@ -125,7 +123,7 @@ const LoggedInNav = (props) => {
             color="inherit"
             underline="none"
             style={{ textDecoration: 'none' }}
-            href="http://localhost:3003/myloot"
+            href={`${APIURL}/myloot`}            >
             >
             My Loot
             </Link>
@@ -153,7 +151,7 @@ const LoggedInNav = (props) => {
             underline="none"
             style={{ textDecoration: 'none' }}
             className={classes.title}
-            href="http://localhost:3003/"
+            href={APIURL}
           >
             {'Log Your Loot'}
           </Link>
