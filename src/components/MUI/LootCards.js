@@ -40,7 +40,7 @@ import Photo from '../../assets/photo.svg';
 import FormButton from './modules/forms/FormButton';
 import AppForm from './modules/views/AppForm';
 import AppFooter from './modules/views/AppFooter';
-
+import APIURL from '../../helpers/environment';
 
 
 // const Row = styled.div`
