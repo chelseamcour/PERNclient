@@ -92,7 +92,7 @@ const LootEdit = (props) => {
 
     const logUpdate = (event, log) => { 
         event.preventDefault();
-        fetch(`${APIURL}/log/${editId}`, {
+        fetch(`${APIURL}log/${editId}`, {
             method: 'PUT',
             body: JSON.stringify({
                 raceName: editRaceName, raceDate: editRaceDate,

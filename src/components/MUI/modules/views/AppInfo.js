@@ -8,7 +8,7 @@ import Typography from '../components/Typography';
 import Medal from '../../../../assets/medal.svg';
 import Tshirt from '../../../../assets/tshirt.svg';
 import Snack from '../../../../assets/snack.svg';
-
+import APIURL from '../../../../helpers/environment';
 
 const styles = (theme) => ({
   root: {
@@ -117,7 +117,7 @@ function AppInfo(props) {
           variant="contained"
           className={classes.button}
           component="a"
-          href="http://localhost:3003/user/signup"
+          href={`${APIURL}user/signup`}
           >
           Get started
         </Button>

@@ -115,7 +115,7 @@ const LootCreate = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`${APIURL}/log/addlog`, {
+    fetch(`${APIURL}log/addlog`, {
         method: 'POST',
         body: JSON.stringify({
           raceName: raceName,
