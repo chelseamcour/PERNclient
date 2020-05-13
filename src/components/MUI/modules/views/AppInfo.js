@@ -117,7 +117,7 @@ function AppInfo(props) {
           variant="contained"
           className={classes.button}
           component="a"
-          href={`${APIURL}user/signup`}
+          href={`${APIURL}/user/signup`}
           >
           Get started
         </Button>

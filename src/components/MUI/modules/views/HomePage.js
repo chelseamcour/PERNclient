@@ -61,7 +61,7 @@ function HomePage(props) {
         size="large"
         className={classes.button}
         component="a"
-        href={`${APIURL}user/signup`}
+        href={`${APIURL}/user/signup`}
       >
         Start Logging
       </FormButton>
