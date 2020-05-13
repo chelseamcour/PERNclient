@@ -26,7 +26,7 @@ import AppForm from './modules/views/AppForm';
 const LootTable = (props) => {
     
     const deleteLog = (log) => { 
-        fetch(`${APIURL}/log/${log.id}`, { 
+        fetch(`http://localhost:3002/log/${log.id}`, { 
             method: 'DELETE',
             headers: new Headers({
             'Content-Type': 'application/json',
