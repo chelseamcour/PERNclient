@@ -8,11 +8,11 @@ import Typography from '../components/Typography';
 function Copyright() {
   return (
     <React.Fragment>
-      {'© '}
+      {/* {'© '}
       <Link color="inherit" href="https://material-ui.com/">
         Chelsea Courtney
       </Link>{' '}
-      {new Date().getFullYear()}
+      {new Date().getFullYear()} */}
     </React.Fragment>
   );
 }
@@ -20,7 +20,6 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.secondary.light,
   },
   container: {
     marginTop: theme.spacing(1),
@@ -80,7 +79,7 @@ export default function AppFooter() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          {/* <Grid item> */}
             {/* <Typography variant="caption">
               {'Icons made by '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
@@ -100,7 +99,7 @@ export default function AppFooter() {
                 CC 3.0 BY
               </Link>
             </Typography> */}
-          </Grid>
+          {/* </Grid> */}
         </Grid>
       </Container>
     </Typography>

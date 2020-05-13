@@ -10,7 +10,7 @@ import AppNavBar from './modules/views/AppNavBar';
 function Index(props) {
   return (
     <React.Fragment>
-      <AppNavBar clearToken={props.clearToken}/>
+      <AppNavBar />
       <HomePage />
       <AppInfo />
       {/* <Contact /> */}

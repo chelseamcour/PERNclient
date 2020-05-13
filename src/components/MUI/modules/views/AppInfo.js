@@ -117,8 +117,8 @@ function AppInfo(props) {
           variant="contained"
           className={classes.button}
           component="a"
-          href="/premium-themes/onepirate/sign-up/"
-        >
+          href="http://localhost:3003/user/signup"
+          >
           Get started
         </Button>
       </Container>

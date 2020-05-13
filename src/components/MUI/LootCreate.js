@@ -29,11 +29,12 @@ import Medal from '../../assets/medal.svg';
 import Tshirt from '../../assets/tshirt.svg';
 import Snack from '../../assets/snack.svg';
 import Photo from '../../assets/photo.svg';
-import LoggedInNav from './modules/views/LoggedInNav';
+import LoggedInNav from './LoggedInNav';
 // import Snackbar from './modules/views/Snackbar';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
 
 const labels = {
     0: 'N/A',
@@ -84,11 +85,11 @@ const LootCreate = (props) => {
   const [raceState, setRaceState] = useState('');
   const [raceCountry, setRaceCountry] = useState('');
   const [raceDistance, setRaceDistance] = useState('');
-  const [medal, setMedal] = useState('');
+  // const [medal, setMedal] = useState('');
   const [medalRating, setMedalRating] = useState('');
-  const [tshirt, setTshirt] = useState('');
+  // const [tshirt, setTshirt] = useState('');
   const [tshirtRating, setTshirtRating] = useState('');
-  const [snacks, setSnacks] = useState('');
+  // const [snacks, setSnacks] = useState('');
   const [snacksRating, setSnacksRating] = useState('');
   const [photos, setPhotos] = useState('');
   const [open, setOpen] = React.useState(false);
@@ -122,11 +123,11 @@ const LootCreate = (props) => {
           raceState: raceState,
           raceCountry: raceCountry,
           raceDistance: raceDistance,
-          medal: medal,
+          // medal: medal,
           medalRating: medalRating,
-          tshirt: tshirt,
+          // tshirt: tshirt,
           tshirtRating: tshirtRating,
-          snacks: snacks,
+          // snacks: snacks,
           snacksRating: snacksRating,
           photos: photos}),
         headers: new Headers ({
@@ -142,11 +143,11 @@ const LootCreate = (props) => {
         setRaceState('');
         setRaceCountry('');
         setRaceDistance('');
-        setMedal('');
+        // setMedal('');
         setMedalRating('');
-        setTshirt('');
+        // setTshirt('');
         setTshirtRating('');
-        setSnacks('');
+        // setSnacks('');
         setSnacksRating('');
         setPhotos('');
         // props.fetchLogs();
@@ -155,7 +156,7 @@ const LootCreate = (props) => {
 
   return (
     <React.Fragment>
-      <LoggedInNav clearToken={clearToken}/>
+            <LoggedInNav token={sessionToken} clickLogout={clearToken} onClick={props.clickLogout}/>
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -172,6 +173,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceName(e.target.value)}
         value={raceName}
         fullWidth
+        required
         name="race name"
         margin="normal"
         variant="outlined"
@@ -186,6 +188,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceDate(e.target.value)}
         value={raceDate}
         fullWidth
+        required
         name="race date"
         margin="normal"
         variant="outlined"
@@ -201,6 +204,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceDistance(e.target.value)}
         value={raceDistance}
         fullWidth
+        required
         name="race distance"
         margin="normal"
         variant="outlined"
@@ -217,6 +221,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceCity(e.target.value)}
         value={raceCity}
         fullWidth
+        required
         name="race city"
         margin="normal"
         variant="outlined"
@@ -231,6 +236,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceState(e.target.value)}
         value={raceState}
         fullWidth
+        required
         name="race state"
         margin="normal"
         variant="outlined"
@@ -245,6 +251,7 @@ const LootCreate = (props) => {
         onChange={(e) => setRaceCountry(e.target.value)}
         value={raceCountry}
         fullWidth
+        required
         name="race country"
         margin="normal"
         variant="outlined"
@@ -263,10 +270,10 @@ const LootCreate = (props) => {
                   
                 />
       </Grid>
-       <Grid item xs>
+       {/* <Grid item xs>
        <Typography>Medal</Typography>
        <FormControl component="fieldset">
-        {/* <FormLabel component="legend">Medal</FormLabel> */}
+        <FormLabel component="legend">Medal</FormLabel>
         <RadioGroup
           row
           // label="Medal"
@@ -278,16 +285,18 @@ const LootCreate = (props) => {
           <FormControlLabel value="false" control={<Radio />} label="No" />
         </RadioGroup>
       </FormControl>
-      </Grid>
+      </Grid> */}
       <Grid item xs>
       <div className={classes.root}>
-        <Typography>Rating</Typography>
-        {/* <FormLabel component="legend">Rating</FormLabel> */}
+        <Typography>Medal*</Typography>
+        {/* <FormLabel component="legend">Medal</FormLabel> */}
         <Rating
           label="rating"
           labelPlacement="top"
           name="medal rating"
           value={medalRating}
+          required
+          minRating={0}
           precision={1}
           onChange={(e) => setMedalRating(e.target.value)}
           onChangeActive={(event, newHoverMedal) => {
@@ -308,10 +317,10 @@ const LootCreate = (props) => {
                   
                 />
       </Grid>
-      <Grid item xs>
+      {/* <Grid item xs>
      <Typography>Tshirt</Typography>
       <FormControl component="fieldset">
-        {/* <FormLabel component="legend">Tshirt</FormLabel> */}
+        <FormLabel component="legend">Tshirt</FormLabel>
         <RadioGroup
           row
           label="Tshirt"
@@ -323,13 +332,15 @@ const LootCreate = (props) => {
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
       </FormControl>
-      </Grid>
+      </Grid> */}
       <Grid item xs>
       <div className={classes.root}>
-      <Typography>Rating</Typography>
+      <Typography>Tshirt*</Typography>
+      {/* <FormLabel component="legend">Tshirt</FormLabel> */}
         <Rating
           name="tshirt rating"
           value={tshirtRating}
+          required
           precision={1}
           onChange={(e) => setTshirtRating(e.target.value)}
           onChangeActive={(event, newHoverTshirt) => {
@@ -350,10 +361,10 @@ const LootCreate = (props) => {
                   
                 />
       </Grid>
-      <Grid item xs>
+      {/* <Grid item xs>
       <Typography>Snacks</Typography>
        <FormControl component="fieldset">
-         {/* <FormLabel component="legend">Snacks</FormLabel> */}
+         <FormLabel component="legend">Snacks</FormLabel>
          <RadioGroup
           row
           label="Snacks"
@@ -365,13 +376,15 @@ const LootCreate = (props) => {
             <FormControlLabel value="false" control={<Radio />} label="No" />
           </RadioGroup>
       </FormControl>
-      </Grid>
+      </Grid> */}
       <Grid item xs>
       <div className={classes.root}>
-      <Typography>Rating</Typography>
+      <Typography>Snacks*</Typography>
         <Rating
           name="snacks rating"
           precision={1}
+          value={snacksRating}
+          required
           onChange={(e) => setSnacksRating(e.target.value)}
           onChangeActive={(event, newHoverSnacks) => {
             setHoverSnacks(newHoverSnacks);
@@ -398,6 +411,7 @@ const LootCreate = (props) => {
         onChange={(e) => setPhotos(e.target.value)}
         value={photos}
         fullWidth
+        required
         name="photos"
         margin="normal"
         variant="outlined"
@@ -409,14 +423,14 @@ const LootCreate = (props) => {
        </Grid>
       </Grid>
       
-    <Button
+    <FormButton
     type="submit"
     color="secondary"
     fullWidth
     onClick={handleClick}
     >
     Submit
-    </Button>
+    </FormButton>
     <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -437,6 +451,7 @@ const LootCreate = (props) => {
       />
     </form>
   </AppForm>
+  {/* <Button type="submit" onClick={props.clickLogout}>Logout</Button> */}
   {/* <AppFooter /> */}
   </React.Fragment>
 )}

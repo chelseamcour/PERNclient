@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import NavBar from '../components/NavBar';
-import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
+import NavBar from './modules/components/NavBar';
+import Toolbar, { styles as toolbarStyles } from './modules/components/Toolbar';
 import Button from '@material-ui/core/Button';
-import withRoot from '../../modules/withRoot';
+// import withRoot from '././modules/withRoot';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -76,6 +76,7 @@ const styles = (theme) => ({
 const LoggedInNav = (props) => {
   const { classes } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [sessionToken, setSessionToken] = useState('');
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -85,6 +86,12 @@ const LoggedInNav = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('')
+  };
+  
 
   return (
     <div>
@@ -123,8 +130,10 @@ const LoggedInNav = (props) => {
             My Loot
             </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} onClick={props.clickLogout}>
+        {/* <MenuItem onClick={handleClose} >
             <Link
+            type="submit"
+            onClick={props.clickLogout}
             color="inherit"
             underline="none"
             style={{ textDecoration: 'none' }}
@@ -132,7 +141,9 @@ const LoggedInNav = (props) => {
             >
             Log Out
             </Link>
-        </MenuItem>      </Menu>
+        </MenuItem>       */}
+        
+        </Menu>
       </div>
           {/* <div className={classes.left} /> */}
         

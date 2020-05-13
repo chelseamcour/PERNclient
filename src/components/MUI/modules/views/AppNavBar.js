@@ -63,7 +63,7 @@ function AppNavBar(props) {
               className={classes.rightLink}
               href="http://localhost:3003/user/login"
             >
-              {'Log In'}
+              {/* {'Log In'} */}
             </Link>
             <Link
               variant="h6"
@@ -72,7 +72,7 @@ function AppNavBar(props) {
               className={clsx(classes.rightLink)}
               href="http://localhost:3003/user/signup"
             >
-              {'Sign Up'}
+              {/* {'Sign Up'} */}
             </Link>
             {/* <Link
               variant="h6"

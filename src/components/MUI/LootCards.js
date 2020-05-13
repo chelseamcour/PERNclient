@@ -37,6 +37,11 @@ import Medal from '../../assets/medal.svg';
 import Tshirt from '../../assets/tshirt.svg';
 import Snack from '../../assets/snack.svg';
 import Photo from '../../assets/photo.svg';
+import FormButton from './modules/forms/FormButton';
+import AppForm from './modules/views/AppForm';
+import AppFooter from './modules/views/AppFooter';
+
+
 
 // const Row = styled.div`
 //     display: flex;
@@ -52,76 +57,19 @@ import Photo from '../../assets/photo.svg';
 // `;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    flexGrow: 1,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+
   button: {
     margin: theme.spacing(1),
   },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
     root: {
       display: 'flex',
-      backgroundColor: theme.palette.secondary.light,
       overflow: 'hidden',
-    },
-    container: {
-      marginTop: theme.spacing(10),
-      marginBottom: theme.spacing(15),
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    item: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: theme.spacing(0, 5),
-    },
-    title: {
-      marginBottom: theme.spacing(14),
-    },
-    number: {
-      fontSize: 24,
-      fontFamily: theme.typography.fontFamily,
-      color: theme.palette.secondary.main,
-      fontWeight: theme.typography.fontWeightMedium,
     },
     image: {
       height: 55,
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(4),
       marginRight: 20,
-    },
-    curvyLines: {
-      pointerEvents: 'none',
-      position: 'absolute',
-      top: -180,
-      opacity: 0.7,
     },
     button: {
       marginTop: theme.spacing(8),
@@ -161,22 +109,36 @@ const logMapper = () => {
     return props.logs.map((log, index) => { 
         return(
          
-            <Grid key={index} container spacing={12}>
+        <Grid key={index} container spacing={12}>
         <Grid item xs spacing={3}>
             <Card>
-            <CardHeader
-              title={log.raceName}
-              subheader={`${log.raceDistance} | ${log.raceCity}, ${log.raceState} ${log.raceCountry}`} 
+            <CardContent style={{textAlign: 'center' }}>
+              <Typography variant="h6" component="h2" color="primary">
+              {log.raceName}
+              </Typography>
+              <Typography variant="body1" color="textSecondary">
+                {log.raceCity}, {log.raceState} {log.raceCountry}
+              </Typography>
+              <Typography variant="body1" color="textSecondary">
+                {log.raceDate}
+              </Typography>
+              <Typography variant="body1" color="textSecondary">
+              Distance: {log.raceDistance}
+              </Typography>
+
+
+              {/* title={`${log.raceName} — ${log.raceDistance}`}
+              subheader={`${log.raceDistance} · ${log.raceCity}, ${log.raceState} ${log.raceCountry}`} 
               style={{textAlign: 'center' }}
-              action={
+              // action={
                 <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     <MoreVertIcon/>
                 </IconButton>
-              }
-            />
+              } */}
+            </CardContent>
             {/* <Typography style={{textAlign: 'center' }}>{log.raceDate}</Typography>
             <Typography style={{textAlign: 'center' }}>{log.raceDistance}</Typography> */}
-            <Menu
+            {/* <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
@@ -193,7 +155,7 @@ const logMapper = () => {
                             <DeleteIcon />
                         </IconButton>
                     </MenuItem>
-                </Menu>
+                </Menu> */}
                 <Grid container direction="row" alignItems="center" spacing={14}>
                 <Grid item xs>   
             <CardContent>
@@ -257,6 +219,9 @@ const logMapper = () => {
                     {`${log.photos}`}
                 </Link>
             </CardContent>
+            <Button color="primary" onClick={() => {props.editUpdateLog(log); props.updateOn()}}><UpdateIcon />Update</Button> 
+            <Button color="primary" onClick={() => {deleteLog(log)}}><DeleteIcon />Delete</Button>
+
             </Grid>
             </Grid>
           </Card>
@@ -268,43 +233,13 @@ const logMapper = () => {
 
   return (
     // const classes = useStyles();
+    <React.Fragment>
+          <AppFooter/>
     <Card className={classes.root}>
-        
         {logMapper()}
-      {/* <CardHeader
-        title="Race Name"
-        subheader="Race Date | Location | Distance"
-        style={{textAlign: 'center' }}
-      /> */}
-      {/* <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      /> */}
-      {/* <CardContent>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
-          </Typography>
-        </CardContent>
-      </Collapse> */}
     </Card>
+    <AppFooter/>
+    </React.Fragment>
   );
 };
 export default withRoot(LootCards);

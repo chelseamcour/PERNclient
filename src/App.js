@@ -12,8 +12,8 @@ import Sitebar from './components/MUI/Sitebar';
 import LootTable from './components/MUI/LootTable';
 import LootEdit from './components/MUI/LootEdit';
 import LootCards from './components/MUI/LootCards';
-import Code from './components/MUI/code';
-import LoggedInNav from './components/MUI/modules/views/LoggedInNav';
+// import Code from './components/MUI/code';
+// import LoggedInNav from './components/MUI/modules/views/LoggedInNav';
 
 
 
@@ -38,7 +38,7 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ? <LootCreate token={sessionToken} />
+    return (sessionToken === localStorage.getItem('token') ? <LootIndex token={sessionToken} clickLogout={clearToken}/>
       : <Auth updateToken={updateToken} />)
   }
 
@@ -48,14 +48,15 @@ function App() {
         {/* <Navigation /> */}
         <Switch>
           <Route path="/" exact> <Home clearToken={clearToken} /> </Route>
-          <Route path="/myloot" exact> <LootIndex token={sessionToken} /> </Route>
-          <Route path="/edit" exact> <LootEdit token={sessionToken} /> </Route>
+          {/* <Route path="/myloot" exact> <LootIndex token={sessionToken} clickLogout={clearToken}/> </Route> */}
+          {/* <Route path="/edit" exact> <LootEdit token={sessionToken} /> </Route> */}
           {/* <Route path="/logout" exact> <Sitebar /> </Route> */}
           {/* <Sitebar clearToken={clearToken} /> */}
           {/* <AppNavBar clickLogout={clearToken} /> */}
           <Route path="user/login"> <LogIn updateToken={updateToken} /> </Route>
-          <Route path="/user/signup"> <SignUp updateToken={updateToken} /> </Route>
+          {/* <Route path="/user/signup"> <SignUp updateToken={updateToken} /> </Route> */}
           {/* <Route> <LoggedInNav clearToken={clearToken}/> </Route> */}
+
           <Route path="/logloot"> <LootCreate token={sessionToken} /> </Route>
           {/* <NavBar clearToken={clearToken}/> */}
           {protectedViews()}

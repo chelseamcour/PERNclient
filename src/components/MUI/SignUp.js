@@ -60,23 +60,21 @@ const SignUp = (props) => {
   return (
     <React.Fragment>
       <AppNavBar />
-      <AppForm>
+      <AppForm >
       <React.Fragment>
 
       <Typography variant="h3" gutterBottom marked="center" align="center">
         Sign Up
       </Typography>
-      <Typography variant="body2" align="center">
+      {/* <Typography variant="body2" align="center">
         <Link href="http://localhost:3003/user/login" underline="always">
           Already have an account?
         </Link>
-      </Typography>
+      </Typography> */}
       </React.Fragment>
 
-      <form
-      onSubmit={handleSubmit}
-      >
-      <Grid container spacing={2}>
+      <form onSubmit={handleSubmit}>
+      {/* <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
        <TextField 
         label="First Name"
@@ -105,7 +103,7 @@ const SignUp = (props) => {
        >
        </TextField>
        </Grid>
-       </Grid>
+       </Grid> */}
        <TextField 
         label="Email"
         defaultValue="email"
@@ -116,6 +114,8 @@ const SignUp = (props) => {
         name="email"
         margin="normal"
         variant="outlined"
+        validator="isEmail"
+        type="email"
         rowsMax={2}
        >
        </TextField>
@@ -135,14 +135,14 @@ const SignUp = (props) => {
         inputProps={{ minLength: 5 }}
        >
        </TextField>
-       <Button
+       <FormButton
        type="submit"
        color="secondary"
        fullWidth
-      //  href="http://localhost:3003/addlog"
+      //  href="http://localhost:3003/logloot"
        >
          Sign Up
-       </Button>
+       </FormButton>
       </form>
       </AppForm>
       {/* <AppFooter /> */}

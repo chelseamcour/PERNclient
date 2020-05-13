@@ -83,12 +83,11 @@ const LogIn = (props) => {
       <Typography variant="h3" gutterBottom marked="center" align="center">
         Log In
       </Typography>
-      <Typography variant="body2" align="center">
-            {'Not a member yet? '}
+      {/* <Typography variant="body2" align="center">
         <Link href="http://localhost:3003/user/signup" underline="always">
-        Sign Up here        
+Need to make an account?
         </Link>
-      </Typography>
+      </Typography> */}
       </React.Fragment>
       <form onSubmit={handleSubmit}>
        <TextField 
@@ -119,13 +118,13 @@ const LogIn = (props) => {
         rowsMax={2}
        >
        </TextField>
-       <Button
+       <FormButton
        type="submit"
        color="secondary"
        fullWidth
        >
          Log In
-       </Button>
+       </FormButton>
       </form>
       </AppForm>
       {/* <Sitebar /> */}

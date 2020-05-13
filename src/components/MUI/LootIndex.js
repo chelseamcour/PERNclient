@@ -5,8 +5,9 @@ import LootCreate from './LootCreate';
 import LootTable from './LootTable';
 import LootEdit from './LootEdit';
 import LootCards from './LootCards';
-import Search from './Search';
-import LoggedInNav from './modules/views/LoggedInNav';
+import LoggedInNav from './LoggedInNav';
+import Button from '@material-ui/core/Button';
+
 
 
 
@@ -54,23 +55,21 @@ const LootIndex = (props) => {
         setSessionToken('');
     }
 
-    // const search = searchValue => {
-    //     dispatch({
-    //       type: "SEARCH_MOVIES_REQUEST"
-    //     });
-    // }
 
     return(
         <Container>
-            <LoggedInNav clearToken={clearToken}/>
-        <Row>
-            <Col>
+
+            
+            <LoggedInNav />
+            {/* <LootCreate/> */}
                 <LootCards logs={logs} editUpdateLog={editUpdateLog}
                 updateOn={updateOn} fetchLogs={fetchLogs} token={props.token}/>
-            </Col>
+
             {updateActive ? <LootEdit logToUpdate={logToUpdate}
             updateOff={updateOff} token={props.token} fetchLogs={fetchLogs}/> : <></>}
-        </Row>
+    
+            <Button onClick={props.clickLogout}>Logout</Button>
+
     </Container>              
     )
 }

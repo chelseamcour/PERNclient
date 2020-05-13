@@ -11,8 +11,14 @@ const Auth = (props) => {
     return(
         <>
         <Container className="auth-container">
-            {/* <SignUp updateToken={props.updateToken}/> */}
+        <Row>
+                <Col >
+            <SignUp updateToken={props.updateToken}/>
+            </Col>
+                <Col >
             <LogIn updateToken={props.updateToken}/>
+            </Col>
+            </Row>
             </Container>
         {/* <Container className="auth-container-two">
             <SignUp updateToken={props.updateToken}/>

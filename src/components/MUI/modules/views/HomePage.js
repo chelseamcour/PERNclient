@@ -10,6 +10,8 @@ import Container from '@material-ui/core/Container';
 import Medal from '../../../../assets/medal.svg';
 import Tshirt from '../../../../assets/tshirt.svg';
 import Snack from '../../../../assets/snack.svg';
+import FormButton from '././../forms/FormButton';
+
 
 const backgroundImage = homepage;
 
@@ -41,13 +43,18 @@ function HomePage(props) {
     <HomePageLayout backgroundClassName={classes.background}>
       {/* Increase the network loading priority of the background image. */}
       <img style={{ display: 'none' }} src={backgroundImage} alt="increase priority" />
+      <Typography color="#DDDDE0" align="center" variant="h3">
+        You've Logged Your Time...
+      </Typography>
       <Typography color="#DDDDE0" align="center" variant="h3" marked="center">
-        You've Logged Your Time...Now Log Your Loot
+        Now Log Your Loot
       </Typography>
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         Keep track of all your race swag in one place!
-      </Typography>        
-      <Button
+      </Typography>
+      {/* <Grid container spacing={14}> */}
+        {/* <Grid item xs={2} sm={6}>    */}
+      <FormButton
         color="secondary"
         variant="contained"
         size="large"
@@ -55,8 +62,21 @@ function HomePage(props) {
         component="a"
         href="http://localhost:3003/user/signup"
       >
-        Sign Up
-      </Button>
+        Start Logging
+      </FormButton>
+     
+      {/* <FormButton
+        color="secondary"
+        variant="contained"
+        size="large"
+        className={classes.button}
+        component="a"
+        href="http://localhost:3003/user/login"
+      >
+        Log In
+      </FormButton> */}
+      {/* </Grid> */}
+      {/* </Grid> */}
     </HomePageLayout>
   );
 }
