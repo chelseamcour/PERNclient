@@ -6,7 +6,7 @@ import Link from '@material-ui/core/Link';
 import NavBar from '../components/NavBar';
 import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
 import Button from '@material-ui/core/Button';
-import APIURL from '../../../../helpers/environment';
+// import APIURL from '../../../../helpers/environment';
 
 const styles = (theme) => ({
   title: {
@@ -51,7 +51,7 @@ function AppNavBar(props) {
             underline="none"
             style={{ textDecoration: 'none' }}
             className={classes.title}
-            href={APIURL}
+            href="https://cmc-blue-lootlog-client.herokuapp.com"
             >
             {'Log Your Loot'}
           </Link>

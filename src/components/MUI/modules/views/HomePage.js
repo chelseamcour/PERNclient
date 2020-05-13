@@ -11,7 +11,7 @@ import Medal from '../../../../assets/medal.svg';
 import Tshirt from '../../../../assets/tshirt.svg';
 import Snack from '../../../../assets/snack.svg';
 import FormButton from '././../forms/FormButton';
-import APIURL from '../../../../helpers/environment';
+// import APIURL from '../../../../helpers/environment';
 
 
 const backgroundImage = homepage;
@@ -61,8 +61,8 @@ function HomePage(props) {
         size="large"
         className={classes.button}
         component="a"
-        href={`${APIURL}/user/signup`}
-      >
+        href="https://cmc-blue-lootlog-client.herokuapp.com/user/signup"
+        >
         Start Logging
       </FormButton>
      

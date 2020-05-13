@@ -114,7 +114,8 @@ const LoggedInNav = (props) => {
             color="inherit"
             underline="none"
             style={{ textDecoration: 'none' }}
-            href={`${APIURL}/logloot`}            >
+            href="https://cmc-blue-lootlog-client.herokuapp.com/logloot"
+            >
             Log Loot
             </Link>
         </MenuItem>
@@ -123,7 +124,7 @@ const LoggedInNav = (props) => {
             color="inherit"
             underline="none"
             style={{ textDecoration: 'none' }}
-            href={`${APIURL}/myloot`}            >
+            href="https://cmc-blue-lootlog-client.herokuapp.com/myloot"
             >
             My Loot
             </Link>
@@ -151,7 +152,7 @@ const LoggedInNav = (props) => {
             underline="none"
             style={{ textDecoration: 'none' }}
             className={classes.title}
-            href={APIURL}
+            href="https://cmc-blue-lootlog-client.herokuapp.com"
           >
             {'Log Your Loot'}
           </Link>
